@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	mysql_connect("localhost", "root", "") or die("mysql连接失败");
-	mysql_select_db("bk") or die("mysql连接失败");
+	mysql_select_db("muscen") or die("mysql连接失败");
 	mysql_query("set names utf8");
 	
 	function logincheck() {

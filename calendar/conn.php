@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	mysql_connect("localhost", "root", "") or die("mysql连接失败");
-	mysql_select_db("bk") or die("mysql连接失败");
+	mysql_select_db("muscen") or die("mysql连接失败");
 	mysql_query("set names utf8");
 	
 	//变量$id只是为了页面跳转回相应的选题组，和登录用户没有关系。
