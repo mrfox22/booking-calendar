@@ -54,7 +54,7 @@
 
 			<div id="tabs-2">
 
-				<p style="font-size:20px">出错了！您可能不属于任何选题组，或您还没有 <a href="/login.php" style="color:red; font-style:italic">登录</a>。</p>
+				<p style="font-size:20px">出错了！您可能不属于任何选题组，或您还没有 <a href="../login.php" style="color:red; font-style:italic">登录</a>。</p>
 			
 			</div>
 

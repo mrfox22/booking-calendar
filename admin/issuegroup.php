@@ -41,7 +41,7 @@
 		<div class="nav1"></div>
 		<div id="main">
 			<table id="stuff">
-				<caption><span>选题组管理</span> <span><a href="/admin/index.php">人员管理</a></span> <span><a href="/admin/index.php?do=dep">部门管理</a></span> <a href="createissuegroup.php">创建选题组</a></caption>
+				<caption><span>选题组管理</span> <span><a href="index.php">人员管理</a></span> <span><a href="index.php?do=dep">部门管理</a></span> <a href="createissuegroup.php">创建选题组</a></caption>
 				<tr id="stuffitem">
 					<th>序号</th>
 					<th>选题组名称</th>

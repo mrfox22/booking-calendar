@@ -36,7 +36,7 @@
 					$sqlPag = "SELECT `depid`, `depcode`, `depname`
 					FROM `bk_departments`";
 				} else {
-					header("location:/admin/index.php&do=dep");
+					header("location:index.php&do=dep");
 					exit();
 				}
 			} else {
@@ -61,7 +61,7 @@
 						ORDER BY depname
 						LIMIT $offset, $pagesize";
 				} else {
-					header("location:/admin/index.php");
+					header("location:index.php&do=dep");
 					exit();
 				}
 			} else {
@@ -90,7 +90,7 @@
 				if(isset($_GET['do'])) {
 					if ($_GET['do'] == 'dep') {
 						?>
-						<caption><span>部门管理</span> <span><a href="/admin/index.php">人员管理</a></span> <span><a href="issuegroup.php">选题组管理</a></span> <a href="add.php?do=dep">添加部门</a></caption>
+						<caption><span>部门管理</span> <span><a href="index.php">人员管理</a></span> <span><a href="issuegroup.php">选题组管理</a></span> <a href="add.php?do=dep">添加部门</a></caption>
 						<tr id="stuffitem">
 						<th>序号</th>
 						<th>部门</th>
@@ -98,12 +98,12 @@
 						<th>操作</th>
 						<?php
 					} else {
-						header("location:/admin/index.php?do=dep");
+						header("location:index.php?do=dep");
 						exit();
 					}
 				} else {
 					?>
-					<caption><span>人员管理</span> <span><a href="/admin/index.php?do=dep">部门管理</a></span> <span><a href="issuegroup.php">选题组管理</a></span> <a href="add.php">添加用户</a></caption>
+					<caption><span>人员管理</span> <span><a href="index.php?do=dep">部门管理</a></span> <span><a href="issuegroup.php">选题组管理</a></span> <a href="add.php">添加用户</a></caption>
 					<tr id="stuffitem">
 					<th>序号</th>
 					<th>用户名</th>
@@ -137,7 +137,7 @@
 							</tr>
 							<?php
 						} else {
-							header("location:/admin/index.php");
+							header("location:index.php");
 							exit();
 						}
 					} else {

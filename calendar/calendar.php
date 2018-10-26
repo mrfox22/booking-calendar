@@ -317,7 +317,7 @@
 		
 
 		<br><br>
-		<a href="/" class="button--white">预定系统</a>
+		<a href="../" class="button--white">预定系统</a>
 
 
 		<?php
