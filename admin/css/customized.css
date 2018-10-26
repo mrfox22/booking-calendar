@@ -1,0 +1,9 @@
+/*mutiselect中各部门的颜色*/
+select option[class="bgs"] {background-color:#0000FF; color:#FFFFFF;}
+select option[class="ch"] {background-color:#FFFF00;}
+select option[class="ds"] {background-color:#99FFFF;}
+select option[class="rmt"] {background-color:#FAEBD7;}
+select option[class="xt"] {background-color:#990000; color:#FFFFFF;}
+select option[class="yyjmb"] {background-color:#FF6600; color:#FFFFFF;}
+select option[class="yyzx"] {background-color:#660099; color:#FFFFFF;}
+select option[class="zx"] {background-color:#99FF66;}

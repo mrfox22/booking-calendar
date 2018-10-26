@@ -1,0 +1,211 @@
+/*sub reset */
+*  {padding:0;margin:0}
+img  {border:0}
+html,body  {font-family:"Microsoft YaHei", "微软雅黑", "Segoe UI", Verdana, Arial, "宋体", Simsun; font-size:12px;overflow-x:auto; width:100%;}
+select,input  {font-family:"Microsoft YaHei", "微软雅黑", "Segoe UI", Verdana, Arial, "宋体", Simsun; font-size:15px;}
+ul,li  {display:block;list-style:none;}
+h1,h2,h3,h4,h5,h6  {display:block;}
+p  {display:block;}
+a  {text-decoration:none;}
+a:hover  {text-decoration:none;}
+em  {font-style:normal;}
+body  {-webkit-text-size-adjust: none; -ms-touch-action: none;  -webkit-overflow-scrolling: touch; }
+
+
+
+/*表头区*/
+header  {width:100%; color:#fff; top:0; left:0; box-shadow: 0 3px 6px #999; background:url(../images/header_bg.gif); position:fixed; height:80px; overflow-x:hidden; overflow-y:hidden;}
+	header h1 {text-indent:10px; height:80px; line-height:80px; float:left;  min-width:300px; font-size:22px; overflow:hidden;}
+	header a {color:#fff; font-size:15px; float:right;}	
+	header p {font-size:18px; font-weight:bold; float:right; text-align:right; padding:0 8px 0 5px;}
+	#loginfo {width:500px; height:80px; line-height:80px;  padding:0 10px 0 0; position:absolute; right:0; top:0; overflow:hidden;}
+		#upperinfo {width:100%; height:40px; line-height:40px; float:right;}
+			#upperlogin {height:59px; line-height:59px;}
+				#namelink {font-size:18px; font-weight:bold;}
+				#namelink:hover {color:yellow; font-style:italic;}
+			#upperlogout {height:59px; line-height:59px;}
+		#lowerinfo {width:100%; height:40px; line-height:40px; float:right;}
+			#lowerswitch {height:30px; line-height:30px;}
+		#middlelogout {line-height:85px;}
+
+
+#main{width:100%; float:left;} /*在用*/
+	/*index表格*/
+	#daypart {width:1135px; border:0; border-collapse: collapse; margin:0 auto; margin-top:50px;} /*在用*/
+		#daypart th, #daypart td  {border-collapse: collapse;} /*在用*/
+		#yearweek {color:white; border:solid 1px rgb(128,128,128);border-collapse:collapse;background:rgb(56, 131, 186); font-size:18px; font-weight:bold;padding:3px 0 3px 0;} /*在用*/
+			.aleft {display:inline-block; float:left; margin-left:20px; color:#fff;} /*在用*/
+			.aright {display:inline-block; float:right; margin-right:20px; color:#fff;} /*在用*/
+			#scenter {display:inline-block; margin:0 auto; color:#fff;} /*在用*/
+			.acenter {display:inline-block; margin:0 auto; color:#fff;} /*在用*/
+			.acentertor {display:inline-block; color:#fff;} /*在用*/
+		#datehour {border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none; font-size:18px; font-weight:bold; text-align:center;} /*在用*/
+
+		.date {height:60px; line-height:60px; font-size:12px; text-align:center; border:solid 1px rgb(128,128,128);border-collapse:collapse;} /*在用*/
+			.insiderheader {font-size:15px;}
+				.insiderheader span {display:block; height:30px; line-height:30px; width:100%;}
+			.myhour {min-width:40px; background-color:green; border:solid 1px rgb(128,128,128);border-collapse:collapse; color:#fff;}
+			.otherhour {min-width:40px; background-color:red; border:solid 1px rgb(128,128,128);border-collapse:collapse; color:#fff;}
+			.timezone {min-width:40px; background-color:yellow; border:solid 1px rgb(128,128,128);border-collapse:collapse;}
+			.noassign {min-width:40px; border:solid 1px rgb(128,128,128); background:rgb(201,232,241); border-collapse:collapse;}
+			.expired {min-width:40px; background-color:rgb(192,192,192); border:solid 1px rgb(128,128,128);border-collapse:collapse;}
+				
+				.insider {width:100%; height:30px; line-height:30px; display:block; font-size:12px;}
+				.insider1 {width:100%; height:30px; line-height:30px; display:block; font-size:15px;}
+				.insiderlink {width:100%; height:30px; line-height:30px;}
+					.link {display:inline-block; border-radius:3px; background-color:rgb(128,128,128); color:#fff; padding:4px 4px; font-size:12px; line-height:12px; border: solid 1px #333;}
+					.alink {display:inline-block; border-radius:3px; background-color:rgb(128,128,128); color:#fff; padding:4px 2px; font-size:8px; line-height:8px; border: solid 1px #333; margin:1px;} /*在用*/
+			
+		/*#yearweek1 {color:white; border:solid 1px rgb(128,128,128);border-collapse:collapse;background:rgb(230, 106, 32); font-size:18px; font-weight:bold;padding:3px 0 3px 0;} 被废弃，但可留作当参考*/	
+			.myhour1 {min-width:100px; background-color:green; border:solid 1px rgb(128,128,128);border-collapse:collapse; color:#fff;}
+				.myhour1 span a {color:#fff;}
+			.otherhour1 {min-width:100px; background-color:red; border:solid 1px rgb(128,128,128);border-collapse:collapse; color:#fff;}
+				.otherhour1 span a {color:#fff;}
+			.timezone1 {min-width:100px; background-color:yellow; border:solid 1px rgb(128,128,128);border-collapse:collapse;}
+				.timezone1 span a {color:#000;}
+			.noassign1 {min-width:100px; border:solid 1px rgb(128,128,128); background:rgb(201,232,241); border-collapse:collapse;}
+				.noassign1 span a {color:#000;}
+			.expired1 {min-width:100px; background-color:rgb(192,192,192); border:solid 1px rgb(128,128,128);border-collapse:collapse;}
+				.expired1 span a {color:#000;}
+	
+	/*详情表*/
+	#datedaytime {width:460px; border:0; border-collapse:collapse; margin:0 auto; margin-top:50px; text-align:center; font-size:18px;} /*在用*/
+	.book {width:460px; border:0; border-collapse:collapse; margin:0 auto; margin-top:50px;} /*在用*/
+		.book th, .book td  {border-collapse: collapse;} /*在用*/
+		.info {height:40px; line-height:40px; border:solid 1px rgb(128,128,128);border-collapse:collapse; font-size:25px; color:#fff; font-weight:bold; padding:3px 0 3px 0; background:rgb(56, 131, 186); letter-spacing:8px;} /*在用*/
+		.info_1702 {height:40px; line-height:40px; border:solid 1px rgb(128,128,128);border-collapse:collapse; font-size:18px; color:#fff; font-weight:bold; padding:3px 0 3px 0; background:rgb(56, 131, 186);}
+		/*.info_1702 {height:40px; line-height:40px; border:solid 1px rgb(128,128,128);border-collapse:collapse; font-size:18px; color:#fff; font-weight:bold; padding:3px 0 3px 0; background:rgb(230, 106, 32);} 已废弃，background可以当参考。;*/
+
+		.row1 {height:40px; line-height:40px; font-size:18px; border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none; background:rgb(201,232,241); } /*在用*/
+			.col1 {width:25%; min-width:100px; border:solid 1px rgb(128,128,128); border-top:none; border-collapse:collapse; font-weight:bold; text-align:center; letter-spacing:2px;} /*在用*/
+			.col2 {min-width:200px; border:solid 1px rgb(128,128,128); border-top:none; border-collapse:collapse; text-align:left; padding-left:10px;} /*在用*/
+				.col2 select {color:#000;}
+
+		.row2 {height:50px; line-height:50px; border:solid 1px rgb(128,128,128); background:rgb(56, 131, 186);  border-collapse:collapse; border-top:none; text-align:center;  font-size:15px; color:#fff;} /*在用*/
+			.bt {width:80px; height:30px; line-height:25px; margin:10px; font-size:15px;} /*在用，需要修改*/
+			.row2 a {width:75px; display:inline-block; font-size:15px; color:#000; letter-spacing:1px; height:28px; line-height:28px; margin:10px; background:rgb(240, 240, 240);} /*在用*/
+			.row2 a:hover {background:rgb(157, 228, 249);} /*在用*/
+			.row2 a:active {position:relative; top:1px; left:1px;} /*在用*/
+
+		.row1_1702 {height:40px; line-height:40px; font-size:18px; border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none; background:rgb(201,232,241); }
+		/*.row1_1702 {height:40px; line-height:40px; font-size:18px; border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none; background:rgb(251,230,217); } 已废弃，background可以当参考。*/
+
+		.row2_1702 {height:50px; line-height:50px; border:solid 1px rgb(128,128,128); background:rgb(56, 131, 186);  border-collapse:collapse; border-top:none; text-align:center;  font-size:15px; color:#fff;} /*在用*/
+			.row2_1702 a {width:75px; display:inline-block; font-size:15px; color:#000; letter-spacing:1px; height:28px; line-height:28px; margin:10px; background:rgb(240, 240, 240);} /*在用*/
+			.row2_1702 a:hover {background:rgb(157, 228, 249);} /*在用*/
+			.row2_1702 a:active {position:relative; top:1px; left:1px;} /*在用*/
+			
+			#apply_panel  {padding:6px;} /*在用*/
+				#apply_panel  button {float:left;width:60px; height:30px; margin:0 5px 0 0; line-height:25px; font-size:15px;} /*在用*/
+				#apply_panel  span {float:left; padding:0 5px 0 45px; display:block; height:30px; line-height:30px; text-align:center; color:#fff; font-size:15px;} /*在用*/
+				#apply_panel  input {float:left;width:15px; height:15px; margin:7px 5px 0 3px; line-height:15px;} /*在用*/
+				#apply_panel  label {float:left;width:40px; height:30px; line-height:30px; text-align:left;color:#fff; font-size:15px;} /*在用*/
+
+		.row3 {height:25px; line-height:25px; font-size:18px; border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none;} /*在用*/
+			.col3 {border:solid 1px rgb(128,128,128); border-top:none; border-collapse:collapse; font-weight:bold; text-align:left; padding-left:15px; letter-spacing:3px;} /*在用*/
+
+		/*.row3_1702 {height:40px; line-height:40px; font-size:18px; color:#fff; font-weight:bold; border:solid 1px rgb(128,128,128); border-top:none; background:rgb(230, 106, 32); border-collapse:collapse;} 
+			.row3_1702 td {padding-left:10px;}  弃用*/
+
+		.row4_1702 {height:5px; line-height:40px; font-size:18px; color:#fff; font-weight:bold; border:solid 1px rgb(128,128,128); border-top:none; background:rgb(201,232,241); border-collapse:collapse;} /*在用*/
+				
+	/*区间预定页面中的信息表格*/
+	#book1 {width:460px; border:0; border-collapse: collapse; margin:0 auto; margin-top:50px;} /*在用*/
+		#book1 th, #book1 td  {border-collapse: collapse;} /*在用*/
+
+
+
+
+
+	/*管理界面表格*/
+	#stuff {width:800px; border:0; border-collapse:collapse; margin:0 auto; margin-top:50px;}
+		#stuff th, #stuff tr, #stuff td, #stuff caption {border-collapse: collapse;}
+		#stuff caption {border-collapse:collapse; font-size:25px; font-weight:bold; padding:3px 0 3px 0; height:40px; line-height:40px; color:rgb(56, 131, 186);}
+			#stuff caption span {float:left; margin-left:2px;}
+			#stuff caption a {display:block; border-radius:3px; float:right; width:75px; background-color:rgb(56, 131, 186); color:#fff; font-size:15px; height:28px; line-height:28px; margin-top:8px; border:solid 1px rgb(128, 128, 128);}
+		#stuff th {border:solid 1px rgb(128,128,128); border-collapse:collapse; border-top:none; font-size:18px; font-weight:bold; text-align:center; color:white; background:rgb(56, 131, 186); height: 40px;}
+		#stuff td {min-width:100px; border:solid 1px rgb(128,128,128); border-collapse:collapse; height:35px; font-size:18px; text-align:center;}
+		.number {font-weight:bold;}
+
+	
+
+	/*管理页面提交区域*/
+	#subform {border:solid 1px rgb(128, 128, 128); margin:0 auto; margin:50px 20px 0; padding:20px; border-radius:3px; background-color:#eee; font-size:15px;}
+		
+		.subformtitle {font-size:20px; font-weight:bold;}
+		.subformitem {display:inline-block; width:100px; font-size:15px; text-align:right; height:20px;}
+		.subformitem1 {display:inline-block; width:120px; font-size:15px; text-align:right; height:20px;}
+		.subformnoitem {display:inline-block; width:70px;}
+		.subformcontent {font-size:15px;}
+		.inputstyle {padding-left:5px; margin:2px 0 2px 0;}
+			.error {border:solid 1px red;}
+		#userright {padding-left:1px; margin:2px 0 2px 0;}
+		#dep {padding-left:1px; margin:2px 0 2px 0;}
+		#sub {width:50px; font-weight:bold;}
+		#subform a {font-size:15px; font-weight:bold; color:rgb(56, 131, 186);}
+		#pSuccess {display:inline-block; padding:5px 10px; border-radius:3px; font-size:15px;}
+			.done {background:#dff0d8; color:#3c763d;}
+		#pName, #pUsername, #pUserright, #pDep, #pBookct, #pOps {color:red; font-size:15px;}
+
+
+
+
+
+
+
+/*隔断区域*/
+.nav1 {width:100%; height:80px; clear:both; float:left;} /*在用*/
+	#btmcenter {width:1135px; height:80px; margin:0 auto;}
+		#btmcenter .a1702 {width:100px; text-align:center; display:block; border-radius:3px; background-color:rgb(230,106,32); color:#fff; padding:4px 4px; font-size:18px; line-height:40px; height:40px; border: solid 1px rgb(128,128,128); float:right; margin-top:20px; font-weight:bold;}
+		#c344 {width:100px; text-align:center; display:block; border-radius:3px; background-color:rgb(56,131,186); color:#fff; padding:4px 4px; font-size:18px; line-height:40px; height:40px; border: solid 1px rgb(128,128,128); float:right; margin-top:20px; font-weight:bold;}
+
+	#innerbtmcenter {width:460px; height:80px; margin:0 auto;}
+		#innerbtmcenter .a1702 {width:100px; text-align:center; display:block; border-radius:3px; background-color:rgb(56,131,186); color:#fff; padding:4px 4px; font-size:18px; line-height:40px; height:40px; border: solid 1px rgb(128,128,128); float:right; margin-top:20px; margin-left:20px; font-weight:bold;}
+
+.nav2 {width:100%; float:right; clear:both}
+.nav3 {width:81px; float:left; margin-left:20px; visibility:hidden;} /*在用*/
+.nav4 {width:81px; float:right; margin-right:20px; visibility:hidden;} /*在用*/
+/*.nav6 {height:20px; border:solid 1px rgb(128,128,128);border-collapse:collapse; border-top:none;  background:rgb(201,232,241);} 不清楚有用否*/
+
+
+
+
+
+/*登陆和密码变更*/
+#login  {padding:20px; margin:150px 20px 0 20px; border-radius:6px; color:#666; line-height:20px; background-color:#eee; font-size:18px;} /*在用*/
+	#login  input.con  {font-size:18px; padding:0 10px; line-height:30px; font-weight:bold; color:#000; height:30px;} /*在用*/
+	#login_btn  {padding:0 10px; margin:10px 0 0 70px; height:30px; line-height:20px; font-size:18px; font-weight:bold;} /*在用*/
+	#vdcode {position:relative; top:7px;}
+	#login a {color:#666;}
+	#login a:hover {color:red; font-style:italic;}
+	#login a:active {position:relative; top:1px; left:1px;}
+
+#pwchange  {padding:20px; margin:150px 20px 0 20px; border-radius:6px; color:#666; line-height:20px; background-color:#eee; font-size:15px;} /*在用*/
+	#pwchange  input.con  {font-size:18px; padding:0 10px; line-height:30px; font-weight:bold; color:#000; height:30px;} /*在用*/
+	#pwchange_btn  {padding:0 10px; margin:10px 0 0 90px; height:30px; line-height:20px; font-size:18px; font-weight:bold;} /*在用*/
+	#pwchange legend {font-weight:bold; color:#000; font-size:18px;}
+
+.redword {color:red;}
+
+
+
+
+
+
+
+/* Newly added */
+.button {
+	display:block; 
+	border-radius:3px; 
+	margin: auto;
+	width:1135px; 
+	background-color:rgb(56, 131, 186); 
+	color:#fff; 
+	font-size:15px; 
+	height:28px; 
+	line-height:28px; 
+	margin-top:8px; 
+	border:solid 1px rgb(128, 128, 128);
+	padding: 10px 0;
+	text-align:center;
+}

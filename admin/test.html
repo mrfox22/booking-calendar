@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="lib/google-code-prettify/prettify.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var a = "曾宪亮";
+			var pattern = /^曾/;
+
+			if(pattern.test(a)) {
+				a = a.replace(/曾/, "增");
+				console.log(a);
+			} else {
+				console.log(a);
+			}
+		</script>
+	</body>
+</html>

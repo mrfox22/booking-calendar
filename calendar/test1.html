@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js test1</title>
+
+		<script type="text/javascript" src="js/jquery-core/jquery-1.4.2-ie-fix.min.js"></script>
+	</head>
+
+	<body>
+		<button class="bstyle" value="1" id="bstyle1">b1</button>
+		<button class="bstyle" value="2" id="bstyle2">b2</button>
+		<button class="bstyle" value="3" id="bstyle3">b3</button>
+
+		
+		<!--下拉菜单-->
+		<select id="foo" size="10">
+			<option value="3">three</option>
+			<option value="1">one</option>
+			<option value="0">zero</option>
+			<option value="2">two</option>
+			<option value="4">name</option>
+			<option value="5">name 2</option>
+		</select>
+
+		<br><br>
+
+		<select id="fighters">
+			<option>待定</option>
+		</select>
+
+		<button id="aopts">Append Options</button>
+
+
+		<script>
+			var a = 2;
+			var b = false;
+
+			if(a == 2 && b) {
+				console.log("ok");
+			} else {
+				console.log("not ok");
+			}
+
+			var obj = document.getElementsByTagName("button");
+			console.log(obj);
+			console.log(obj.length);
+			console.log(obj[2].value);
+
+			var buttonValue = [];
+			for(var i = 0; i < obj.length; i++) {
+				buttonValue.push(obj[i].value);
+			}
+			console.log(buttonValue);
+
+			var max = Math.max.apply(null, buttonValue);
+			console.log("max = " + max);
+
+			var min = Math.min(...buttonValue);
+			console.log("min = " + min);
+
+			var firstButton = document.getElementById("bstyle1");
+			console.log(firstButton.value);
+
+			$(".bstyle").click(function(event) {
+				console.log(event.target.id);
+				console.log(typeof event.target.value);
+			});
+
+
+			/*
+			//下拉菜单
+			// WARN: won't handle OPTGROUPs!
+			var sel = document.getElementById('foo');
+			
+			// convert OPTIONs NodeList to an Array
+			// - keep in mind that we're using the original OPTION objects
+			var ary = (function(nl) {
+				var a = [];
+				for (var i = 0, len = nl.length; i < len; i++) a.push(nl.item(i));
+				return a;
+			})(sel.options);
+
+			// sort OPTIONs Array
+			ary.sort(function(a,b){
+				// sort by "value"? (numeric comparison)
+				// NOTE: please remember what ".value" means for OPTION objects
+				//return a.value - b.value;
+				// or by "label"? (lexicographic comparison) - case sensitive
+				return a.text < b.text ? -1 : a.text > b.text ? 1 : 0;
+				// or by "label"? (lexicographic comparison) - case insensitive
+				//var aText = a.text.toLowerCase();
+				//var bText = b.text.toLowerCase();
+				//return aText < bText ? -1 : aText > bText ? 1 : 0;
+			});
+
+			// remove all OPTIONs from SELECT (don't worry, the original
+			// OPTION objects are still referenced in "ary") ;-)
+			for (var i = 0, len = ary.length; i < len; i++) sel.remove(ary[i].index);
+
+			// (re)add re-ordered OPTIONs to SELECT
+			for (var i = 0, len = ary.length; i < len; i++) sel.add(ary[i], null);
+			*/
+
+			$("#foo").html($("#foo option").sort(function (a, b) {
+				return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+			}));
+
+			$("#aopts").click(function() {
+				$("#fighters").append(
+					"<option>Ken</option>"
+				);
+			});
+		</script>
+	</body>
+</html>
