@@ -29,7 +29,7 @@
 
 				//echo "<h1 id='pageAdditional'>当前用户为 ".$_COOKIE['name']."&nbsp;&nbsp;<a id='inOutBack' href='login.php?id=".$id."'>登录</a></h1>";
 			} else {
-				echo "<script>alert('用户已被停用。请联系管理员。'); document.location.href='login.php';</script>";
+				echo "<script>alert('用户已被停用。请联系管理员。'); document.location.href='../login.php';</script>";
 			}
 		} else {
 			// prePrintR('test', true);

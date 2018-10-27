@@ -201,7 +201,7 @@ $(document).ready(function(){
 			});
 		} else {  //用户已退出或超时
 			alert("用户已退出或用户已被删除。");
-			document.location.href = "login.php";
+			document.location.href = "../login.php";
 		}
 	};
 	
@@ -266,7 +266,7 @@ $(document).ready(function(){
 					}
 				} else {
 					alert("用户已退出或用户已被删除。。");
-					document.location.href = "login.php";
+					document.location.href = "../login.php";
 				}
 			}
 		});
@@ -877,27 +877,9 @@ $(document).ready(function(){
 
 										//当日期选择栏发生变化时促发每月事件显示
 										eventsOnCalendar(selectedDate, id);
-									//}).change();
-									});
+									}).change();
 								} else {
 									alert(addEvent.msg);
-									//document.location.href = "calendar.php?id="+id;
-									
-									/*
-									$("#dateSelect").val(startDate);
-
-									$("#dateSelect").bind('change', function() {
-										var selectedDate = $("#dateSelect").val();
-										var dtArray = selectedDate.split("-");
-										var year = dtArray[0];
-										var month = dtArray[1];
-										month = month.replace(/^[0]+/g,"")		
-										var day = dtArray[2];
-										jfcalplugin.showMonth("#mycal",year,parseInt(month-1).toString());
-									
-										eventsOnCalendar(selectedDate, id);
-									});
-									*/
 								}
 							}
 						});

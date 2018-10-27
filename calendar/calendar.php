@@ -126,14 +126,9 @@
 								$i = 1;
 								foreach($userIssueList as $issue) {
 									?>
-									<input type="radio" id="issueName<?php echo $i;?>" class="issueName" value="<?php echo $issue;?>" name="radio" <?php echo $i ==1 ? "checked='checked'" : "";?>><label for="issueName<?php echo $i;?>"><?php echo issueName($issue);?></label>
+									<input type="radio" id="issueName<?php echo $i;?>" class="issueName" value="<?php echo $issue;?>" name="radio" <?php $i ==1 ? "checked='checked'" : "";?>><label for="issueName<?php echo $i;?>"><?php echo issueName($issue);?></label>
 
-									<!--
-											<input type="radio" id="radio1" name="radio"><label for="radio1">Choice 1</label>
-											<input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
-											<input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
-										
-									<button id="issueName<?php echo $i;?>" class="issueName" value=<?php echo $issue;?>><?php echo issueName($issue);?></button>  --><!--注意这些button的排列是按照选题组id的号从小到大排列的-->
+									
 									<?php
 									$i++;
 								}
