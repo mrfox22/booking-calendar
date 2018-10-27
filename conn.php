@@ -52,26 +52,26 @@
 		}
 	}
 
-	function adminlogincheck() {
-		if (!isset($_SESSION['adminflag'])) {
-			header("location:../admin/login.php");
-			exit();
-		} else {
-			if ($_SESSION['adminflag']=="logged") {
-				echo "<div id='upperinfo'>";
-				echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
-				echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='../profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
-				echo "</div>";
-				echo "<div class='nav2'></div>";
-				echo "<div id='lowerinfo'>";
-				echo "<span id='lowerswitch'><a href='../index.php'>进入预定页面</a></span>";
-				echo "</div>";
-			} else {
-				header("location:../admin/login.php");
-				exit();
-			}
-		}
-	}
+	// function adminlogincheck() {
+	// 	if (!isset($_SESSION['adminflag'])) {
+	// 		header("location:../admin/login.php");
+	// 		exit();
+	// 	} else {
+	// 		if ($_SESSION['adminflag']=="logged") {
+	// 			echo "<div id='upperinfo'>";
+	// 			echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
+	// 			echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='../profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
+	// 			echo "</div>";
+	// 			echo "<div class='nav2'></div>";
+	// 			echo "<div id='lowerinfo'>";
+	// 			echo "<span id='lowerswitch'><a href='../index.php'>进入预定页面</a></span>";
+	// 			echo "</div>";
+	// 		} else {
+	// 			header("location:../admin/login.php");
+	// 			exit();
+	// 		}
+	// 	}
+	// }
 
 	//为处理页面，即纯php页面。
 	function adminlogincheckonly() {

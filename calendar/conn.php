@@ -7,7 +7,6 @@
 	//变量$id只是为了页面跳转回相应的选题组，和登录用户没有关系。
 	function logincheck() {
 		if ($_SESSION['flag']=="logged" && !empty($_COOKIE['sid'])) {
-			// prePrintR($_COOKIE['sid'], true);
 			$sql_user="select * from bk_staff where s_id=".$_COOKIE['sid'];
 			$rs_user=mysql_query($sql_user);
 			$row_user=mysql_fetch_array($rs_user);
@@ -15,7 +14,7 @@
 			if($row_user['s_right']==1 || $row_user['s_right']==2) {
 				//查看用户是否在任意选题组中有权限或者是否为管理员
 				if(!empty($row_user['s_inissues']) || $row_user['s_right']==1) {  
-						echo "<h1 id='pageAdditional'><a href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a> 已登录&nbsp;&nbsp;<a id='inOutBack' href='logout.php'>退出</a></h1>";
+						echo "<h1 id='pageAdditional'><a href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a> 已登录&nbsp;&nbsp;<a id='inOutBack' href='../logout.php'>退出</a></h1>";
 				} else {
 					header("location:oops.php");
 					exit();
@@ -109,26 +108,26 @@
 		}
 	}
 
-	function adminlogincheck() {
-		if (!isset($_SESSION['adminflag'])) {
-			header("location:../admin/login.php");
-			exit();
-		} else {
-			if ($_SESSION['adminflag']=="logged") {
-				echo "<div id='upperinfo'>";
-				echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
-				echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='../profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
-				echo "</div>";
-				echo "<div class='nav2'></div>";
-				echo "<div id='lowerinfo'>";
-				echo "<span id='lowerswitch'><a href='../index.php'>进入预定页面</a></span>";
-				echo "</div>";
-			} else {
-				header("location:../admin/login.php");
-				exit();
-			}
-		}
-	}
+	// function adminlogincheck() {
+	// 	if (!isset($_SESSION['adminflag'])) {
+	// 		header("location:../admin/login.php");
+	// 		exit();
+	// 	} else {
+	// 		if ($_SESSION['adminflag']=="logged") {
+	// 			echo "<div id='upperinfo'>";
+	// 			echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
+	// 			echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='../profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
+	// 			echo "</div>";
+	// 			echo "<div class='nav2'></div>";
+	// 			echo "<div id='lowerinfo'>";
+	// 			echo "<span id='lowerswitch'><a href='../index.php'>进入预定页面</a></span>";
+	// 			echo "</div>";
+	// 		} else {
+	// 			header("location:../admin/login.php");
+	// 			exit();
+	// 		}
+	// 	}
+	// }
 
 	//为处理页面，即纯php页面。
 	function adminlogincheckonly() {
