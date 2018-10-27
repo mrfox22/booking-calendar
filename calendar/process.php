@@ -106,7 +106,7 @@
 
 		if(!empty($sid)) {
 			if($sid == $originalSid) {
-				if($isMember) {
+				if($isMember || $loggerRight === 1) {
 					switch($loggerRight) {
 						case 1:
 							$rightValidate['e_editor'] = $editor;
