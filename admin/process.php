@@ -119,10 +119,11 @@
 				$sql_tb = "create table bk_issues_".$groupCode." (e_id int(10) not null primary key auto_increment, e_title varchar(50), e_editor int(5), e_edright int(5), e_contents varchar(200), e_yyyymm int(10), e_dd int(10), e_atime bigint(15), e_etime int(10))";
 				mysql_query($sql_tb);
 
-				echo "<script>alert('create'); document.location.href='issuegroup.php'</script>";
+				echo "<script>alert('选题组已创建。'); document.location.href='issuegroup.php'</script>";
 				exit();
 			} else {
-			
+				echo "<script>alert('相同选题组代码已存在。'); document.location.href='createissuegroup.php'</script>";
+				exit();
 			}
 		}
 
