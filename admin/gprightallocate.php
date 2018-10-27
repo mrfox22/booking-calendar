@@ -74,11 +74,17 @@
 										<!--<option value="200">NA</option>对方法sort的测试-->
 										<!--<optgroup label="test">不能使分组方式，因为加上分组后，排序就不起作用了-->
 										<?php
-											//$classesOfDepts = array("web"=>"1", "executive"=>"2", "news"=>"3", "design"=>"4", "music"=>"5", "metro"=>"6", "center"=>"7", "system"=>"8");
-											$classesOfDepts = array("1"=>"rmt", "2"=>"bgs", "3"=>"zx", "4"=>"ch", "5"=>"yyjmb", "6"=>"ds", "7"=>"yyzx", "8"=>"xt");
+											$classesOfDepts = array();
+											$sqlDeptIdCode = "SELECT `depid`, `depcode` 
+												FROM bk_departments";
+											$queryDeptIdCode = mysql_query($sqlDeptIdCode);
+											while ($rowDeptIdCode = mysql_fetch_array($queryDeptIdCode)) {
+												$classesOfDepts[$rowDeptIdCode['depid']] = $rowDeptIdCode['depcode'];
+											}
 
 											//$sql_all = "select * from bk_staff order by convert(s_name using gbk)";  //php方法按照中文名称排序 
-											$sql_all = "select * from bk_staff";
+											$sql_all = "SELECT * from `bk_staff` 
+											WHERE `s_username` <> 'guest' AND `s_username` <> 'admin'";
 											$rs_all = mysql_query($sql_all);
 											while($row_all = mysql_fetch_array($rs_all)) {
 												echo "<option value='".$row_all['s_id']."' class='".$classesOfDepts[$row_all['s_dep']]."'>".$row_all['s_name']."</option>";

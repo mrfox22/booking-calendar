@@ -141,7 +141,6 @@
 								<br>
 								<span class="subformitem">权限：</span>
 								<select name="right" id="userright">
-									<option value="1" <?php echo $selected=($row['s_right']==1)? "selected": ""; ?>>管理员</option>
 									<option value="2" <?php echo $selected=($row['s_right']==2)? "selected": ""; ?>>用户</option>
 									<option value="3" <?php echo $selected=($row['s_right']==3)? "selected": ""; ?>>停用</option>
 								</select>　<span id="pUserright"></span>
@@ -150,7 +149,8 @@
 								<select name="dep" id="dep">
 									<?php
 									$sql3 = "SELECT `depid`, `depname`
-										FROM `bk_departments`
+										FROM `bk_departments` 
+										WHERE `depcode` <> 'xt' 
 										ORDER BY CONVERT(`depname` USING gb2312)";
 									$query3 = mysql_query($sql3);
 									while ($result3 = mysql_fetch_array($query3)) {

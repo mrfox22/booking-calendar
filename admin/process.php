@@ -160,7 +160,7 @@
 	}
 
 
-	//挂起选题组
+	//停用选题组
 	if(!empty($_GET['sid'])) {
 		$sid = (int)$_GET['sid'];  //选题组ID
 
@@ -179,11 +179,11 @@
 				$sql3 = "update bk_issuegplist set member='', admin='', user='' where id=".$sid;
 				mysql_query($sql3);
 
-				echo  "<script>alert('挂起选题组成功。'); document.location.href='issuegroup.php';</script>";
+				echo  "<script>alert('停用选题组成功。'); document.location.href='issuegroup.php';</script>";
 				exit();
 
 			} else {  //member已经被清空
-				echo  "<script>alert('选题组已被挂起。'); document.location.href='issuegroup.php';</script>";
+				echo  "<script>alert('选题组已被停用。'); document.location.href='issuegroup.php';</script>";
 				exit();
 			}
 		} else {  //当选题组已经被删除时

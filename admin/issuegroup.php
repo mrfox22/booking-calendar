@@ -49,7 +49,7 @@
 					<th>成员</th>
 					<th>管理员</th>
 					<th>用户</th>
-					<th>挂起</th>
+					<th>停用</th>
 				</tr>
 				<?php
 					//所有成员由代号转名称
@@ -89,7 +89,7 @@
 						if(!empty($row['member'])) {
 							echo "<td><a href='process.php?sid=".$row['id']."'>清空成员</a></td>";
 						} else {
-							echo "<td>已挂起</td>";
+							echo "<td>已停用</td>";
 						}
 						$n++;
 					}

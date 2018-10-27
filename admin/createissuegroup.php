@@ -42,7 +42,14 @@
 					<div class="col-xs-5">
 						<select name="from[]" id="multi_d" class="form-control" size="26" multiple="multiple">
 							<?php
-								$classesOfDepts = array("1"=>"rmt", "2"=>"bgs", "3"=>"zx", "4"=>"ch", "5"=>"yyjmb", "6"=>"ds", "7"=>"yyzx", "8"=>"xt");
+								$classesOfDepts = array();
+								$sqlDeptIdCode = "SELECT `depid`, `depcode` 
+									FROM bk_departments";
+								$queryDeptIdCode = mysql_query($sqlDeptIdCode);
+								while ($rowDeptIdCode = mysql_fetch_array($queryDeptIdCode)) {
+									$classesOfDepts[$rowDeptIdCode['depid']] = $rowDeptIdCode['depcode'];
+								}
+								
 								$sql_all = "select * from bk_staff";
 								$rs_all = mysql_query($sql_all);
 								while($row_all = mysql_fetch_array($rs_all)) {

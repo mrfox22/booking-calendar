@@ -60,6 +60,7 @@
 		} else {
 			$sqlPostDep = "SELECT `depid`, `depname` 
 				FROM `bk_departments` 
+				WHERE `depcode` <> 'xt' 
 				ORDER BY CONVERT(`depname` USING gb2312)";
 			$queryPostDep = mysql_query($sqlPostDep);
 			?>
@@ -78,7 +79,6 @@
 						<br>
 						<span class="subformitem">权限：</span>
 						<select name="userright" id="userright">
-							<option value="1">管理员</option>
 							<option value="2">用户</option>
 							<option value="3">停用</option>
 						</select>　<span id="pUserright"></span>
