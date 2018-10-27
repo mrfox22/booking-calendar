@@ -36,7 +36,7 @@
 					$sqlPag = "SELECT `depid`, `depcode`, `depname`
 					FROM `bk_departments`";
 				} else {
-					header("location:index.php&do=dep");
+					header("location:index.php?do=dep");
 					exit();
 				}
 			} else {
@@ -55,13 +55,12 @@
 
 			if (isset($_GET['do'])) {
 				if ($_GET['do'] == 'dep') {
-					$sql="SELECT `depid`, `depcode`, `depname` 
-						FROM `bk_departments` 
-						WHERE `depid` <> 8 
+					$sql="SELECT `depid`, `depcode`, `depname`, `depmembers` 
+						FROM `bk_departments`
 						ORDER BY depname
 						LIMIT $offset, $pagesize";
 				} else {
-					header("location:index.php&do=dep");
+					header("location:index.php");
 					exit();
 				}
 			} else {
@@ -95,6 +94,7 @@
 						<th>序号</th>
 						<th>部门</th>
 						<th>部门代号</th>
+						<th>部门成员</th>
 						<th>操作</th>
 						<?php
 					} else {
@@ -124,18 +124,39 @@
 						$brief2=$rs['depname'].nl2br('\n')."部门代码：".$rs['depcode'].nl2br('\n')."确定删除部门？";
 
 						if ($_GET['do'] == "dep") {
+							$members = explode(",", $rs['depmembers']);
+							$memberStr = "";
+							foreach ($members as $value) {
+								if (!empty($value)) {
+									$sqlMem="SELECT `s_name` 
+										FROM `bk_staff`  
+										WHERE s_id=" . $value;
+									$queryMem = mysql_query($sqlMem);
+									$rsMem = mysql_fetch_array($queryMem);
+									$memberStr .= $rsMem['s_name']. ',';
+								}
+							}
+							$memberStr = trim($memberStr, ",");
 							echo "<tr>";
 							echo "<td class='number'>".$n."</td>";
 							echo "<td>".$rs['depname']."</td>";
 							echo "<td>".$rs['depcode']."</td>"; 
+							echo "<td>".$memberStr."</td>"; 
 
-							?>
-							<td>
-								<a href="edit.php?do=dep&id=<?php echo $rs['depid']; ?>">编辑</a> 
-								<a href="#<?php echo $n;?>" onclick="if(confirm('<?php echo $brief2;?>')) {document.location.href='delete.php?id=<?php echo $rs['depid']; ?>&do=dep'}; return false;">删除</a>
-							</td>
-							</tr>
-							<?php
+							if ($rs['depcode'] != "yyzx" && $rs['depcode'] != "xt") {
+								?>
+									<td>
+										<a href="edit.php?do=dep&id=<?php echo $rs['depid']; ?>">编辑</a> 
+										<a href="#<?php echo $n;?>" onclick="if(confirm('<?php echo $brief2;?>')) {document.location.href='delete.php?id=<?php echo $rs['depid']; ?>&do=dep'}; return false;">删除</a>
+									</td>
+								</tr>
+								<?php
+							} else {
+								?>
+									<td></td>
+								</tr>
+								<?php
+							}
 						} else {
 							header("location:index.php");
 							exit();
