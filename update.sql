@@ -479,7 +479,7 @@ INSERT INTO `bk_issues_zx` (`e_id`, `e_title`, `e_editor`, `e_edright`, `e_conte
 (507, '工匠变意匠', 35, 2, '新语丝', 201809, 29, 1538131336, 1538131336),
 (508, '书店收门票', 30, 2, '新语丝', 201809, 30, 1538131377, 1538131377),
 (509, '早听《出现》', 28, 2, '早听', 201810, 12, 1539314517, 1539314517);
-INSERT INTO `bk_events` (`e_id`, `e_title`, `e_editor`, `e_edright`, `e_contents`, `e_yyyymm`, `e_dd`, `e_atime`, `e_etime`) VALUES
+INSERT INTO `bk_issues_zx` (`e_id`, `e_title`, `e_editor`, `e_edright`, `e_contents`, `e_yyyymm`, `e_dd`, `e_atime`, `e_etime`) VALUES
 (510, '南征北战《微笑》', 28, 2, '早听', 201810, 13, 1539314553, 1539314553),
 (511, '张艺兴《give me a chance》', 28, 2, '早听', 201810, 14, 1539314575, 1539314575),
 (512, '胡彦斌《我敢》', 28, 2, '早听', 201810, 15, 1539314591, 1539314591),
