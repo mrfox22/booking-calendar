@@ -25,7 +25,7 @@
 			<h1>音乐中心后台管理</h1>
 			<div id='loginfo'>
 				<?php
-					include("../conn.php"); 
+					include("conn.php"); 
 					adminlogincheck();
 				?>
 			</div>
@@ -54,7 +54,7 @@
 				</div>
 				<?php
 			} else {
-				header("location:/admin/index.php?do=dep");
+				header("location:index.php?do=dep");
 				exit();
 			}
 		} else {
