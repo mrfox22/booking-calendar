@@ -76,11 +76,11 @@
 	//为处理页面，即纯php页面。
 	function adminlogincheckonly() {
 		if (!isset($_SESSION['adminflag'])) {
-			header("location:../admin/login.php");
+			header("location:login.php");
 			exit();
 		} else {
 			if ($_SESSION['adminflag']!="logged") {
-				header("location:../admin/login.php");
+				header("location:login.php");
 				exit();
 			}
 		}

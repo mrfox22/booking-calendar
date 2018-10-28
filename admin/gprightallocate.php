@@ -74,6 +74,7 @@
 										<!--<option value="200">NA</option>对方法sort的测试-->
 										<!--<optgroup label="test">不能使分组方式，因为加上分组后，排序就不起作用了-->
 										<?php
+												// For the background color of dept
 											$classesOfDepts = array();
 											$sqlDeptIdCode = "SELECT `depid`, `depcode` 
 												FROM bk_departments";

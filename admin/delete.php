@@ -1,6 +1,6 @@
 <?php
-	include("../conn.php"); 
-	adminlogincheckonly();
+	include("conn.php"); 
+	adminlogincheckonly(); // For pure PHP page
 
 	if(!empty($_GET['id'])) { 
 		if (isset($_GET['do'])) {
@@ -60,8 +60,52 @@
 				exit();
 			}
 		} else {
-			mysql_query("delete from bk_staff where s_id=" .$_GET['id']);
-			echo "<script>alert('已删除。'); document.location.href='index.php';</script>";
+			$sql = "SELECT * from `bk_staff` 
+				WHERE `s_id` = " .$_GET['id'] ;
+			$result = mysql_query($sql);
+			$row = mysql_fetch_array($result); 
+
+			if($row['s_username'] != "guest" && $row['s_username'] != "admin") {
+				$sqlUserInIssue = "SELECT `id`, `member`, `admin`, `user` 
+					FROM `bk_issuegplist`";
+
+				$queryUserInIssue = mysql_query($sqlUserInIssue);
+				while ($rowUserInIssue = mysql_fetch_array($queryUserInIssue)) {
+					$memberArr = explode(",", $rowUserInIssue['member']);
+					$keyInMember = array_search($_GET['id'], $memberArr);
+					if ($keyInMember !== false) {
+						unset($memberArr[$keyInMember]);
+						$memberStr = implode(",", $memberArr);
+
+						$adminArr = explode(",", $rowUserInIssue['admin']);
+						$keyInAdmin = array_search($_GET['id'], $adminArr);
+						if ($keyInAdmin !== false) {
+							unset($adminArr[$keyInAdmin]);
+							$adminStr = implode(",", $adminArr);
+							$sqlUpdate = "UPDATE `bk_issuegplist` 
+								SET `member` = '$memberStr', `admin` = '$adminStr' 
+								WHERE `id` = " .$rowUserInIssue['id'];
+							mysql_query($sqlUpdate);
+							continue;
+						}
+
+						$userArr = explode(",", $rowUserInIssue['user']);
+						$keyInUser = array_search($_GET['id'], $userArr);
+						unset($userArr[$keyInUser]);
+						$userStr = implode(",", $userArr);
+						$sqlUpdate = "UPDATE `bk_issuegplist` 
+							SET `member` = '$memberStr', `user` = '$userStr' 
+							WHERE `id` = " .$rowUserInIssue['id'];
+						mysql_query($sqlUpdate);
+					}
+				}
+
+				mysql_query("delete from bk_staff where s_id=" .$_GET['id']);
+				echo "<script>alert('已删除。'); document.location.href='index.php';</script>";
+			} else {
+				header("location:index.php");
+				exit();
+			}
 		}
 	}
 ?>

@@ -24,7 +24,7 @@
 			echo "<header>";
 			echo "<h1>音乐中心后台管理</h1>";
 			echo "<div id='loginfo'>";
-			include("../conn.php"); 
+			include("conn.php"); 
 			adminlogincheck();
 			echo "</div>";
 			echo "</header>";
@@ -104,69 +104,82 @@
 						WHERE `depid` = " .$_GET['id'] ;
 						$result = mysql_query($sql);
 						$row = mysql_fetch_array($result); 
-						?>
-						<div class="nav1"></div>
-						<div id="main">
-							<div id="subform">
-								<form action="" method="post" id="admineditpost">
-									<span class="subformtitle">部门代码　<?php echo $row['depcode']; ?></span>
-									<br><br>
-									<span class="subformitem">名称：</span>
-									<input type="text" name="name" class="inputstyle" id="name" value="<?php echo $row['depname']; ?>">　<span id="pName"></span>
-									<input type="hidden" name="dep" value="dep" />
-									<span id="pDep"></span>
-									<br><br>
-									<input type="submit" name="sub" id="sub" value="提交">　<a href='index.php?do=dep'>返回首页</a>　<span id="pSuccess"></span>
-								</form>
+
+						if ($row['depcode'] != "xt" && $row['depcode'] != "yyzx") {
+
+							?>
+							<div class="nav1"></div>
+							<div id="main">
+								<div id="subform">
+									<form action="" method="post" id="admineditpost">
+										<span class="subformtitle">部门代码　<?php echo $row['depcode']; ?></span>
+										<br><br>
+										<span class="subformitem">名称：</span>
+										<input type="text" name="name" class="inputstyle" id="name" value="<?php echo $row['depname']; ?>">　<span id="pName"></span>
+										<input type="hidden" name="dep" value="dep" />
+										<span id="pDep"></span>
+										<br><br>
+										<input type="submit" name="sub" id="sub" value="提交">　<a href='index.php?do=dep'>返回首页</a>　<span id="pSuccess"></span>
+									</form>
+								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+						} else {
+							header("location:index.php?do=dep");
+							exit();
+						}
 					} else {
-						header("location:/admin/index.php?do=dep");
+						header("location:index.php?do=dep");
 						exit();
 					}
 				} else {
 					$sql = "select * from bk_staff where s_id=" .$_GET['id'] ;
 					$result = mysql_query($sql);
 					$row = mysql_fetch_array($result); 
-					?>
-					<div class="nav1"></div>
-					<div id="main">
-						<div id="subform">
-							<form action="" method="post" id="admineditpost">
-								<span class="subformtitle">用户名　<?php echo $row['s_username']; ?></span>
-								<br><br>
-								<span class="subformitem">姓名：</span>
-								<input type="text" name="name" class="inputstyle" id="name" value="<?php echo $row['s_name']; ?>">　<span id="pName"></span>
-								<br>
-								<span class="subformitem">权限：</span>
-								<select name="right" id="userright">
-									<option value="2" <?php echo $selected=($row['s_right']==2)? "selected": ""; ?>>用户</option>
-									<option value="3" <?php echo $selected=($row['s_right']==3)? "selected": ""; ?>>停用</option>
-								</select>　<span id="pUserright"></span>
-								<br>
-								<span class="subformitem">部门：</span>
-								<select name="dep" id="dep">
-									<?php
-									$sql3 = "SELECT `depid`, `depname`
-										FROM `bk_departments` 
-										WHERE `depcode` <> 'xt' 
-										ORDER BY CONVERT(`depname` USING gb2312)";
-									$query3 = mysql_query($sql3);
-									while ($result3 = mysql_fetch_array($query3)) {
-										?>
-										<option value="<?php echo $result3['depid']; ?>" <?php echo $selected=($row['s_dep'] ==
-										$result3['depid'])? "selected": ""; ?>><?php echo $result3['depname']; ?></option>
+
+					if($row['s_username'] != "guest" && $row['s_username'] != "admin") {
+						?>
+						<div class="nav1"></div>
+						<div id="main">
+							<div id="subform">
+								<form action="" method="post" id="admineditpost">
+									<span class="subformtitle">用户名　<?php echo $row['s_username']; ?></span>
+									<br><br>
+									<span class="subformitem">姓名：</span>
+									<input type="text" name="name" class="inputstyle" id="name" value="<?php echo $row['s_name']; ?>">　<span id="pName"></span>
+									<br>
+									<span class="subformitem">权限：</span>
+									<select name="right" id="userright">
+										<option value="2" <?php echo $selected=($row['s_right']==2)? "selected": ""; ?>>用户</option>
+										<option value="3" <?php echo $selected=($row['s_right']==3)? "selected": ""; ?>>停用</option>
+									</select>　<span id="pUserright"></span>
+									<br>
+									<span class="subformitem">部门：</span>
+									<select name="dep" id="dep">
 										<?php
-									};
-									?>
-								</select>　<span id="pDep"></span>
-								<br><br>
-								<input type="submit" name="sub" id="sub" value="提交">　<a href='index.php'>返回首页</a>　<span id="pSuccess"></span>
-							</form>
+										$sql3 = "SELECT `depid`, `depname`
+											FROM `bk_departments` 
+											WHERE `depcode` <> 'xt' 
+											ORDER BY CONVERT(`depname` USING gb2312)";
+										$query3 = mysql_query($sql3);
+										while ($result3 = mysql_fetch_array($query3)) {
+											?>
+											<option value="<?php echo $result3['depid']; ?>" <?php echo $selected=($row['s_dep'] ==
+											$result3['depid'])? "selected": ""; ?>><?php echo $result3['depname']; ?></option>
+											<?php
+										};
+										?>
+									</select>　<span id="pDep"></span>
+									<br><br>
+									<input type="submit" name="sub" id="sub" value="提交">　<a href='index.php'>返回首页</a>　<span id="pSuccess"></span>
+								</form>
+							</div>
 						</div>
-					</div>
-					<?php
+						<?php
+					} else {
+						header("location:index.php");
+						exit();
+					}
 				}
 			}
 		?>
