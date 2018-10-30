@@ -84,7 +84,7 @@
 					$depname = $rowPostDep['depname'];
 					$depcode = $rowPostDep['depcode'];
 					$depmembersStr = $rowPostDep['depmembers'];
-					$depmembersArr = explode(",", $depmembersStr);
+					$depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
 
 					if($status==true) {
 						// Update bk_staff
@@ -94,8 +94,8 @@
 
 						/**
 						 * Update bk_departments 
-						 * Need to delete first then add for the case 
-						 * when no modification on dept
+						 * Need to delete first then add,
+						 * for the case when no modification on dept
 						 */
 						// Delete member from ex dept
 						$sqlExDep = "SELECT `depmembers` 
@@ -104,7 +104,7 @@
 						$queryExDep = mysql_query($sqlExDep);
 						$rowExDep = mysql_fetch_array($queryExDep);
 
-						$memberArr = explode(",", $rowExDep['depmembers']);
+						$memberArr = $rowExDep['depmembers'] ? explode(",", $rowExDep['depmembers']) : array();
 						// prePrintR($memberArr, true);
 						$keyInMember = array_search($_GET['id'], $memberArr);
 						if ($keyInMember !== false) {
@@ -119,7 +119,7 @@
 
 						// Add member into current dept
 						$depmembersArr[] = $_GET['id'];
-						$depmembersStr = implode(",", $depmembersArr);
+						$depmembersStr = count($depmembersArr) > 1 ? implode(",", $depmembersArr) : $depmembersArr[0];
 						$sqlAddmember = "UPDATE `bk_departments` 
 							SET `depmembers` = '$depmembersStr' 
 							WHERE `depid` = ". $dep;

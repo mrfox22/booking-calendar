@@ -49,4 +49,8 @@
 	echo "<br>";
 	echo $arrBStr."hereiam<br>";
 
+	$strArr[] = 2018;
+	print_r($strArr);
+	echo "<br>";
+
 ?>
