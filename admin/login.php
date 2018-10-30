@@ -27,7 +27,7 @@
 		</header>
 
 		<?php	
-			include("../conn.php");
+			include("conn.php");
 
 			// 此处判断post过来有没有值，无值则页面无反应，且拒绝0。
 			if (!empty($_POST["s_username"]) && !empty($_POST["s_password1"])) {	

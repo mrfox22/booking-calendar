@@ -1,6 +1,6 @@
 <?php
 	include("conn.php");
-	//adminlogincheckonly();
+	adminlogincheckonly();
 
 	
 	//在bk_staff的s_inissues项中删掉已脱离的选题组

@@ -103,7 +103,7 @@
 		$rs_user=mysql_query($sql_user);
 		$row_user=mysql_fetch_array($rs_user);
 		if($row_user['s_right']==4) {
-			header("location:index.php");
+			header("location:../index.php");
 			exit();
 		}
 	}
@@ -130,17 +130,17 @@
 	// }
 
 	//为处理页面，即纯php页面。
-	function adminlogincheckonly() {
-		if (!isset($_SESSION['adminflag'])) {
-			header("location:../admin/login.php");
-			exit();
-		} else {
-			if ($_SESSION['adminflag']!="logged") {
-				header("location:../admin/login.php");
-				exit();
-			}
-		}
-	}
+	// function adminlogincheckonly() {
+	// 	if (!isset($_SESSION['adminflag'])) {
+	// 		header("location:../admin/login.php");
+	// 		exit();
+	// 	} else {
+	// 		if ($_SESSION['adminflag']!="logged") {
+	// 			header("location:../admin/login.php");
+	// 			exit();
+	// 		}
+	// 	}
+	// }
 
 	function htmltocode($content)  { 
 		$content=htmlspecialchars($content, ENT_QUOTES);

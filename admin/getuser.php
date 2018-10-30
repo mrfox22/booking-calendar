@@ -1,5 +1,5 @@
 <?php
-	include("../conn.php");
+	include("conn.php");
 	adminlogincheckonly();
 
 	if(isset($_POST['name']) && isset($_POST['username']) && isset($_POST['dep'])) {
@@ -40,44 +40,6 @@
 			$depcode = $rowPostDep['depcode'];
 		}
 		
-		
-
-		/* switch ($dep) {
-			case 1:
-				$depname="融媒体部";
-				$depcode = "rmt";
-				break;
-			case 2:
-				$depname="办公室";
-				$depcode = "bgs";
-				break;
-			case 3:
-				$depname="资讯采编部";
-				$depcode = "zx";
-				break;
-			case 4:
-				$depname="策划部";
-				$depcode = "ch";
-				break;
-			case 5:
-				$depname="音乐节目部";
-				$depcode = "yyjmb";
-				break;
-			case 6:
-				$depname="都市节目部";
-				$depcode = "ds";
-				break;
-			case 7:
-				$depname="音乐中心";
-				$depcode = "yyzx";
-				break;
-			case 8:
-				$depname="系统";
-				$depcode = "xt";
-				break;
-			default:
-				$errors['dep']="需要为用户选择一个部门。";
-		} */
 		
 		if(!preg_match('/^[a-zA-Z0-9][a-zA-Z0-9_]{1,15}$/i', $username)) {  
 			if (isset($_POST['userright'])) {
@@ -137,6 +99,23 @@
 				$md5ps1=md5("123456");
 				$sql2="INSERT INTO `bk_staff` (`s_username`, `s_password1`, `s_right`, `s_name`, `s_rtitle`, `s_dep`, `s_depcode`, `s_depname`, `s_pwresetted`) VALUES ('$username', '$md5ps1', '$userright', '$name', '$r_title', '$dep', '$depcode', '$depname', 1)";
 				mysql_query($sql2);
+				$newId = mysql_insert_id();
+
+				$sqlPostDep = "SELECT `depmembers` 
+					FROM `bk_departments` 
+					WHERE `depid` = ". $dep;
+				$queryPostDep = mysql_query($sqlPostDep);
+				$rowPostDep = mysql_fetch_array($queryPostDep);
+
+				$depmembersStr = $rowPostDep['depmembers'];
+				$depmembersArr = explode(",", $depmembersStr);
+
+				$depmembersArr[] = $newId;
+				$depmembersStr = implode(",", $depmembersArr);
+				$sqlAddmember = "UPDATE `bk_departments` 
+					SET `depmembers` = '$depmembersStr' 
+					WHERE `depid` = ". $dep;
+				mysql_query($sqlAddmember);
 			} else {
 				$sql2="INSERT INTO `bk_departments` 
 					(`depnum`, `depcode`, `depname`, `depmembers`,  `depadmin`, `depusers`) 

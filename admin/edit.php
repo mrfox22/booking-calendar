@@ -32,7 +32,6 @@
 			if(isset($_POST['name']) && isset($_POST['dep'])) {
 				
 				$status=true;
-				$right=$_POST['right'];
 				$name=$_POST['name'];
 				$dep=$_POST['dep'];
 				
@@ -56,7 +55,10 @@
 					exit();
 				}
 				
-				if (isset($_POST['right'])) {
+				if (isset($_POST['right']) && isset($_POST['exdep'])) {
+					$right=$_POST['right'];
+					$exdep = $_POST['exdep'];
+
 					switch ($right) {
 						case 1:
 							$s_rtitle="管理员";
@@ -81,10 +83,44 @@
 
 					$depname = $rowPostDep['depname'];
 					$depcode = $rowPostDep['depcode'];
+					$depmembersStr = $rowPostDep['depmembers'];
+					$depmembersArr = explode(",", $depmembersStr);
 
 					if($status==true) {
+						// Update bk_staff
 						$sql2="update bk_staff set s_name='$name', s_right='$right', s_rtitle='$s_rtitle', s_dep='$dep', s_depcode='$depcode', s_depname='$depname' where s_id=" . $_GET['id'];
 						mysql_query($sql2);
+
+
+						// Update bk_departments
+						// Add member into current dept
+						$depmembersArr[] = $_GET['id'];
+						$depmembersStr = implode(",", $depmembersArr);
+						$sqlAddmember = "UPDATE `bk_departments` 
+							SET `depmembers` = '$depmembersStr' 
+							WHERE `depid` = ". $dep;
+						mysql_query($sqlAddmember);
+
+						// Delete member from ex dept
+						$sqlExDep = "SELECT `depmembers` 
+							FROM `bk_departments` 
+							WHERE `depid` = ". $exdep;
+						$queryExDep = mysql_query($sqlExDep);
+						$rowExDep = mysql_fetch_array($queryExDep);
+
+						$memberArr = explode(",", $rowExDep['depmembers']);
+						// prePrintR($memberArr, true);
+						$keyInMember = array_search($_GET['id'], $memberArr);
+						if ($keyInMember !== false) {
+							unset($memberArr[$keyInMember]);
+							$memberStr = implode(",", $memberArr);
+	
+							$sqlDeleteMember = "UPDATE `bk_departments` 
+							SET `depmembers` = '$memberStr' 
+							WHERE `depid` = ". $exdep;
+							mysql_query($sqlDeleteMember);
+						}
+
 						echo "<script>alert('修改成功。');</script>";
 					}
 				} else {
@@ -148,6 +184,7 @@
 									<span class="subformitem">姓名：</span>
 									<input type="text" name="name" class="inputstyle" id="name" value="<?php echo $row['s_name']; ?>">　<span id="pName"></span>
 									<br>
+									<input type="hidden" name="exdep" value="<?php echo $row['s_dep'];?>">
 									<span class="subformitem">权限：</span>
 									<select name="right" id="userright">
 										<option value="2" <?php echo $selected=($row['s_right']==2)? "selected": ""; ?>>用户</option>

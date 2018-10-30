@@ -60,12 +60,14 @@
 				exit();
 			}
 		} else {
-			$sql = "SELECT * from `bk_staff` 
+			$sql = "SELECT * 
+				FROM `bk_staff` 
 				WHERE `s_id` = " .$_GET['id'] ;
 			$result = mysql_query($sql);
 			$row = mysql_fetch_array($result); 
 
 			if($row['s_username'] != "guest" && $row['s_username'] != "admin") {
+				// Delete from bk_issuegplist
 				$sqlUserInIssue = "SELECT `id`, `member`, `admin`, `user` 
 					FROM `bk_issuegplist`";
 
@@ -98,6 +100,26 @@
 							WHERE `id` = " .$rowUserInIssue['id'];
 						mysql_query($sqlUpdate);
 					}
+				}
+
+
+				// Delete from bk_departments
+				$sqlExDep = "SELECT `depmembers` 
+					FROM `bk_departments` 
+					WHERE `depid` = ". $row['s_dep'];
+				$queryExDep = mysql_query($sqlExDep);
+				$rowExDep = mysql_fetch_array($queryExDep);
+
+				$memberArr = explode(",", $rowExDep['depmembers']);
+				$keyInMember = array_search($_GET['id'], $memberArr);
+				if ($keyInMember !== false) {
+					unset($memberArr[$keyInMember]);
+					$memberStr = implode(",", $memberArr);
+
+					$sqlDeleteMember = "UPDATE `bk_departments` 
+					SET `depmembers` = '$memberStr' 
+					WHERE `depid` = ". $row['s_dep'];
+					mysql_query($sqlDeleteMember);
 				}
 
 				mysql_query("delete from bk_staff where s_id=" .$_GET['id']);
