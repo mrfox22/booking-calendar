@@ -92,15 +92,11 @@
 						mysql_query($sql2);
 
 
-						// Update bk_departments
-						// Add member into current dept
-						$depmembersArr[] = $_GET['id'];
-						$depmembersStr = implode(",", $depmembersArr);
-						$sqlAddmember = "UPDATE `bk_departments` 
-							SET `depmembers` = '$depmembersStr' 
-							WHERE `depid` = ". $dep;
-						mysql_query($sqlAddmember);
-
+						/**
+						 * Update bk_departments 
+						 * Need to delete first then add for the case 
+						 * when no modification on dept
+						 */
 						// Delete member from ex dept
 						$sqlExDep = "SELECT `depmembers` 
 							FROM `bk_departments` 
@@ -120,6 +116,14 @@
 							WHERE `depid` = ". $exdep;
 							mysql_query($sqlDeleteMember);
 						}
+
+						// Add member into current dept
+						$depmembersArr[] = $_GET['id'];
+						$depmembersStr = implode(",", $depmembersArr);
+						$sqlAddmember = "UPDATE `bk_departments` 
+							SET `depmembers` = '$depmembersStr' 
+							WHERE `depid` = ". $dep;
+						mysql_query($sqlAddmember);
 
 						echo "<script>alert('修改成功。');</script>";
 					}
