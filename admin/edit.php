@@ -75,7 +75,7 @@
 							exit();
 					}
 					
-					$sqlPostDep = "SELECT `depcode`, `depname` 
+					$sqlPostDep = "SELECT `depcode`, `depname`, `depmembers` 
 						FROM `bk_departments` 
 						WHERE `depid` = ". $dep;
 					$queryPostDep = mysql_query($sqlPostDep);
@@ -84,7 +84,8 @@
 					$depname = $rowPostDep['depname'];
 					$depcode = $rowPostDep['depcode'];
 					$depmembersStr = $rowPostDep['depmembers'];
-					$depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
+					// $depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
+					$depmembersArr = explode(",", $depmembersStr);
 
 					if($status==true) {
 						// Update bk_staff
@@ -119,7 +120,7 @@
 
 						// Add member into current dept
 						$depmembersArr[] = $_GET['id'];
-						$depmembersStr = count($depmembersArr) > 1 ? implode(",", $depmembersArr) : $depmembersArr[0];
+						$depmembersStr = implode(",", $depmembersArr);
 						$sqlAddmember = "UPDATE `bk_departments` 
 							SET `depmembers` = '$depmembersStr' 
 							WHERE `depid` = ". $dep;
