@@ -119,6 +119,15 @@
 						}
 
 						// Add member into current dept
+						$sqlPostDep = "SELECT `depmembers` 
+							FROM `bk_departments` 
+							WHERE `depid` = ". $dep;
+						$queryPostDep = mysql_query($sqlPostDep);
+						$rowPostDep = mysql_fetch_array($queryPostDep);
+
+						$depmembersStr = $rowPostDep['depmembers'];
+						$depmembersArr = explode(",", $depmembersStr);
+
 						$depmembersArr[] = $_GET['id'];
 						$depmembersStr = implode(",", $depmembersArr);
 						$sqlAddmember = "UPDATE `bk_departments` 
