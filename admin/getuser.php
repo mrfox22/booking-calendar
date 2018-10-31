@@ -108,7 +108,7 @@
 				$rowPostDep = mysql_fetch_array($queryPostDep);
 
 				$depmembersStr = $rowPostDep['depmembers'];
-				$depmembersArr = explode(",", $depmembersStr);
+				$depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
 
 				$depmembersArr[] = $newId;
 				$depmembersStr = implode(",", $depmembersArr);

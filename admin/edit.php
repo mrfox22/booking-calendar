@@ -84,7 +84,6 @@
 					$depname = $rowPostDep['depname'];
 					$depcode = $rowPostDep['depcode'];
 					$depmembersStr = $rowPostDep['depmembers'];
-					// $depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
 					$depmembersArr = explode(",", $depmembersStr);
 
 					if($status==true) {
@@ -105,8 +104,7 @@
 						$queryExDep = mysql_query($sqlExDep);
 						$rowExDep = mysql_fetch_array($queryExDep);
 
-						$memberArr = $rowExDep['depmembers'] ? explode(",", $rowExDep['depmembers']) : array();
-						// prePrintR($memberArr, true);
+						$memberArr = explode(",", $rowExDep['depmembers']);
 						$keyInMember = array_search($_GET['id'], $memberArr);
 						if ($keyInMember !== false) {
 							unset($memberArr[$keyInMember]);
@@ -126,7 +124,7 @@
 						$rowPostDep = mysql_fetch_array($queryPostDep);
 
 						$depmembersStr = $rowPostDep['depmembers'];
-						$depmembersArr = explode(",", $depmembersStr);
+						$depmembersArr = $depmembersStr ? explode(",", $depmembersStr) : array();
 
 						$depmembersArr[] = $_GET['id'];
 						$depmembersStr = implode(",", $depmembersArr);
