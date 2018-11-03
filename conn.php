@@ -5,27 +5,32 @@
 	mysql_query("set names utf8");
 	
 	function logincheck() {
-		if ($_SESSION['flag']=="logged" && !empty($_COOKIE['sid'])) {
-			$sql_user="select * from bk_staff where s_id=".$_COOKIE['sid'];
-			$rs_user=mysql_query($sql_user);
-			$row_user=mysql_fetch_array($rs_user);
-			if($row_user['s_right']!=4) {
-				if($row_user['s_right']==1) {
-					echo "<div id='upperinfo'>";
-					echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
-					echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
-					echo "</div>";
-					echo "<div class='nav2'></div>";
-					echo "<div id='lowerinfo'>";
-					echo "<span id='lowerswitch'><a href='admin/index.php'>进入管理页面</a></span>";
-					echo "</div>";
+		if (isset($_SESSION['flag']) && isset($_COOKIE['sid'])) {
+			if ($_SESSION['flag']=="logged" && !empty($_COOKIE['sid'])) {
+				$sql_user="select * from bk_staff where s_id=".$_COOKIE['sid'];
+				$rs_user=mysql_query($sql_user);
+				$row_user=mysql_fetch_array($rs_user);
+				if($row_user['s_right']!=4) {
+					if($row_user['s_right']==1) {
+						echo "<div id='upperinfo'>";
+						echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
+						echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
+						echo "</div>";
+						echo "<div class='nav2'></div>";
+						echo "<div id='lowerinfo'>";
+						echo "<span id='lowerswitch'><a href='admin/index.php'>进入管理页面</a></span>";
+						echo "</div>";
+					} else {
+						echo "<span id='middlelogout'><a href='logout.php'>退出</a></span>";
+						echo "<p>已登录</p><a id='namelink' href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a>";
+					}
 				} else {
-					echo "<span id='middlelogout'><a href='logout.php'>退出</a></span>";
-					echo "<p>已登录</p><a id='namelink' href='profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a>";
+					echo "<span id='middlelogout'><a href='login.php'>登录</a></span>";
+					echo "<p>当前用户为 ".$_COOKIE['name']."</p>";
 				}
 			} else {
-				echo "<span id='middlelogout'><a href='login.php'>登录</a></span>";
-				echo "<p>当前用户为 ".$_COOKIE['name']."</p>";
+				header("location:login.php");
+				exit();
 			}
 		} else {
 			$sql_user="select * from bk_staff where s_right=4";
@@ -43,46 +48,22 @@
 
 	//防止php处理页面在游客权限下也能操作
 	function logincheckforguest() {
-		$sql_user="select * from bk_staff where s_id=".$_COOKIE['sid'];
-		$rs_user=mysql_query($sql_user);
-		$row_user=mysql_fetch_array($rs_user);
-		if($row_user['s_right']==4) {
-			header("location:index.php");
-			exit();
-		}
-	}
-
-	// function adminlogincheck() {
-	// 	if (!isset($_SESSION['adminflag'])) {
-	// 		header("location:../admin/login.php");
-	// 		exit();
-	// 	} else {
-	// 		if ($_SESSION['adminflag']=="logged") {
-	// 			echo "<div id='upperinfo'>";
-	// 			echo "<span id='upperlogout'><a href='logout.php'>退出</a></span>";
-	// 			echo "<span id='upperlogin'><p>已登录</p><a id='namelink' href='../profile.php?id=".$_COOKIE['sid']."'>".$_COOKIE['name']."</a></span>";
-	// 			echo "</div>";
-	// 			echo "<div class='nav2'></div>";
-	// 			echo "<div id='lowerinfo'>";
-	// 			echo "<span id='lowerswitch'><a href='../index.php'>进入预定页面</a></span>";
-	// 			echo "</div>";
-	// 		} else {
-	// 			header("location:../admin/login.php");
-	// 			exit();
-	// 		}
-	// 	}
-	// }
-
-	//为处理页面，即纯php页面。
-	function adminlogincheckonly() {
-		if (!isset($_SESSION['adminflag'])) {
-			header("location:../admin/login.php");
-			exit();
-		} else {
-			if ($_SESSION['adminflag']!="logged") {
-				header("location:../admin/login.php");
+		if (isset($_COOKIE['sid']) && isset($_SESSION['flag'])) {
+			if ($_SESSION['flag']=="logged" && !empty($_COOKIE['sid'])) {
+				$sql_user="select * from bk_staff where s_id=".$_COOKIE['sid'];
+				$rs_user=mysql_query($sql_user);
+				$row_user=mysql_fetch_array($rs_user);
+				if($row_user['s_right']==4) {
+					header("location:index.php");
+					exit();
+				}
+			} else {
+				header("location:index.php");
 				exit();
 			}
+		} else {
+			header("location:index.php");
+			exit();
 		}
 	}
 

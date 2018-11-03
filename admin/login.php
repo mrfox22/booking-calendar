@@ -45,8 +45,8 @@
 					$row=mysql_fetch_array($rs);
 					if($row['s_right']==1) {
 						$_SESSION['adminflag']="logged";
-						setcookie("name", $row['s_name'], time()+36000);
-						setcookie("sid", $row['s_id'], time()+36000);
+						setcookie("adminName", $row['s_name'], time()+36000);
+						setcookie("adminSid", $row['s_id'], time()+36000);
 						header("Location:index.php");	
 						exit();
 					} else {
