@@ -24,14 +24,17 @@
 					header("location:oops.php");
 					exit();
 				} else {
-					echo "<script>alert('用户已被停用。请联系管理员。'); document.location.href='../login.php';</script>";
+					echo "<script>alert('用户已被停用。请联系管理员。'); document.location.href='oops.php';</script>";
 				}
 			} else {
-				header("location:../login.php");
+				header("location:oops.php");
 				exit();
 			}
-		} 
-	}
+		} else {
+			header("location:oops.php");
+			exit();
+		}
+	} 
 
 	//防止php处理页面在游客权限下也能操作
 	function logincheckforguest() {
@@ -41,15 +44,15 @@
 				$rs_user=mysql_query($sql_user);
 				$row_user=mysql_fetch_array($rs_user);
 				if($row_user['s_right']==4) {
-					header("location:../index.php");
+					header("location:oops.php");
 					exit();
 				}
 			} else {
-				header("location:../index.php");
+				header("location:oops.php");
 				exit();
 			}
 		} else {
-			header("location:../index.php");
+			header("location:oops.php");
 			exit();
 		}
 	}
