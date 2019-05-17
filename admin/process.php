@@ -67,42 +67,14 @@
 
 		$groupName = $_POST['groupName'];
 		
-		/*
-		$member = "";
-		$admin = "";
-		$user = "";
-		*/
-		
-		$to = isset($_POST['to']) ? $_POST['to'] : array();
-		$to_2 = isset($_POST['to_2']) ? $_POST['to_2'] : array();
+		$to = isset($_POST['to']) ? $_POST['to'] : array(); // Admin array
+		$to_2 = isset($_POST['to_2']) ? $_POST['to_2'] : array(); // User array 
 
 		$admin = implode(",", $to);  //空数组合成字符串也是空字符串
 		$user = implode(",", $to_2);
 		$member = implode(",", array_merge($to, $to_2));
 		
 		$memberArr = array_merge($to, $to_2);  //合并数组
-
-		/*
-		if(!empty($_POST['to'])) {
-			$to = $_POST['to'];
-			foreach($to as $t) {
-				$member .= $t.",";
-				$admin .= $t.",";
-			}
-			$admin = trim($admin, ",");
-		}
-
-		if(!empty($_POST['to_2'])) {
-			$to_2 = $_POST['to_2'];
-			foreach($to_2 as $t_2) {
-				$member .= $t_2.",";
-				$user .= $t_2.",";
-			}
-			$user = trim($user, ",");
-		}
-
-		$member = trim($member, ",");
-		*/
 
 		if($_POST['act'] == "create") {
 			//echo "create";
@@ -116,8 +88,18 @@
 				$sql = "insert into bk_issuegplist (listname, listcode, member, admin, user) values ('$groupName', '$groupCode', '$member', '$admin', '$user')";
 				mysql_query($sql);
 
+				$new_table_id = mysql_insert_id();
+
 				$sql_tb = "create table bk_issues_".$groupCode." (e_id int(10) not null primary key auto_increment, e_title varchar(50), e_editor int(5), e_edright int(5), e_contents varchar(200), e_yyyymm int(10), e_dd int(10), e_atime bigint(15), e_etime int(10))";
 				mysql_query($sql_tb);
+
+				foreach($to as $i) {
+					enterIssue($i, $new_table_id);
+				}
+
+				foreach($to_2 as $i) {
+					enterIssue($i, $new_table_id);
+				}
 
 				echo "<script>alert('选题组已创建。'); document.location.href='issuegroup.php'</script>";
 				exit();
@@ -128,7 +110,6 @@
 		}
 
 		if($_POST['act'] == "edit") {
-			//echo "edit";
 			$id = (int)$_POST['id'];
 
 			$sql = "select * from bk_issuegplist where id=".$id;
@@ -192,32 +173,3 @@
 			exit();
 		}
 	}
-
-
-	/*
-	if(!empty($_POST['rightAllocate']) && !empty($_POST['tableCode'])) {
-		$id = $_POST['rightAllocate'];
-		$tableCode = $_POST['tableCode'];
-		$to = $_POST['to'];
-		$to_2 = $_POST['to_2'];
-
-		$admin = "";
-		foreach($to as $t) $admin .= $t.",";
-		$admin = trim($admin, ",");
-
-		$user = "";
-		foreach($to_2 as $t_2) $user .= $t_2.",";
-		$user = trim($user, ",");
-
-		$sql = "update bk_issuegplist set admin='$admin', user='$user' where id=".$id;
-		mysql_query($sql);
-
-		//第一次时进行创建。若已有表格，则不进行该操作。
-		$sql_tb = "create table bk_events_".$tableCode." (e_id int(10) not null primary key auto_increment, e_title varchar(50), e_editor int(5), e_edright int(5), e_contents varchar(200), e_yyyymm int(10), e_dd int(10), e_atime bigint(15), e_etime int(10))";
-		mysql_query($sql_tb);
-
-		echo "<script>alert('ok'); document.location.href='issuegroup.php'</script>";
-	}
-	*/
-
-?>
